@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 38 92% 50%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 47% 14%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 222 47% 16%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 47% 16%;
+    --input: 222 47% 16%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.75rem;
+
+    /* Subject Colors */
+    --java: 38 92% 50%;
+    --dsa: 190 95% 45%;
+    --oracle: 0 84% 55%;
+    --aptitude: 270 70% 60%;
+    --japanese: 330 85% 65%;
+    --communication: 160 84% 45%;
+
+    /* Gradients */
+    --gradient-streak: linear-gradient(135deg, hsl(38 92% 50%), hsl(25 95% 55%));
+    --gradient-success: linear-gradient(135deg, hsl(160 84% 45%), hsl(140 70% 40%));
+    --gradient-card: linear-gradient(135deg, hsl(222 47% 10%), hsl(222 47% 8%));
+
+    /* Shadows */
+    --shadow-glow: 0 0 40px -10px hsl(38 92% 50% / 0.3);
+    --shadow-card: 0 4px 24px -4px hsl(0 0% 0% / 0.4);
+
+    --sidebar-background: 222 47% 6%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 38 92% 50%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 47% 14%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 47% 16%;
+    --sidebar-ring: 38 92% 50%;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  .stat-card {
+    @apply glass-card p-6 transition-all duration-300 hover:border-primary/30;
+  }
+
+  .stat-card:hover {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .subject-badge {
+    @apply px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide;
+  }
+
+  .subject-java { @apply bg-[hsl(var(--java)/0.15)] text-[hsl(var(--java))]; }
+  .subject-dsa { @apply bg-[hsl(var(--dsa)/0.15)] text-[hsl(var(--dsa))]; }
+  .subject-oracle { @apply bg-[hsl(var(--oracle)/0.15)] text-[hsl(var(--oracle))]; }
+  .subject-aptitude { @apply bg-[hsl(var(--aptitude)/0.15)] text-[hsl(var(--aptitude))]; }
+  .subject-japanese { @apply bg-[hsl(var(--japanese)/0.15)] text-[hsl(var(--japanese))]; }
+  .subject-communication { @apply bg-[hsl(var(--communication)/0.15)] text-[hsl(var(--communication))]; }
+
+  .progress-bar {
+    @apply h-2 rounded-full bg-muted overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500 ease-out;
+    background: var(--gradient-streak);
+  }
+
+  .streak-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .chart-container {
+    @apply glass-card p-6;
+  }
+
+  .nav-link {
+    @apply px-4 py-2 rounded-lg text-muted-foreground transition-all duration-200;
+  }
+
+  .nav-link:hover {
+    @apply bg-accent text-foreground;
+  }
+
+  .nav-link.active {
+    @apply bg-primary/10 text-primary font-medium;
+  }
+
+  .completion-high { @apply text-[hsl(var(--communication))]; }
+  .completion-medium { @apply text-[hsl(var(--java))]; }
+  .completion-low { @apply text-[hsl(var(--oracle))]; }
+}
+
+@layer utilities {
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px -5px hsl(38 92% 50% / 0.4); }
+    50% { box-shadow: 0 0 40px -5px hsl(38 92% 50% / 0.6); }
+  }
+
+  .animate-count-up {
+    animation: count-up 0.6s ease-out forwards;
+  }
+
+  @keyframes count-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
