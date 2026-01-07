@@ -28,10 +28,13 @@ export default function DailyTracker() {
     });
   }, [startDate]);
 
-  const paginatedDays = useMemo(() => {
-    const reversedDays = [...allDays].reverse();
-    return reversedDays.slice(page * itemsPerPage, (page + 1) * itemsPerPage);
-  }, [allDays, page]);
+const paginatedDays = useMemo(() => {
+  return allDays.slice(
+    page * itemsPerPage,
+    (page + 1) * itemsPerPage
+  );
+}, [allDays, page]);
+
 
   const getEntryForDate = (date: string) => entries.find(e => e.date === date);
 
